@@ -73,8 +73,32 @@
     a:hover { text-decoration: underline; }
     .wrap { max-width: 860px; margin: 0 auto; padding: 24px; }
     header { padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .header-content { display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-left { flex: 1; }
+    .header-right { margin-left: 20px; }
     header .title { font-size: 20px; font-weight: 700; margin: 0; }
     header .meta { color: var(--muted); font-size: 14px; }
+    .subscribe-link { 
+      display: inline-block; 
+      padding: 8px 16px; 
+      background: var(--link); 
+      color: white; 
+      text-decoration: none; 
+      border-radius: 6px; 
+      font-size: 14px; 
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    .subscribe-link:hover { 
+      background: #1d4ed8; 
+      text-decoration: none; 
+    }
+    
+    @media (max-width: 640px) {
+      .header-right { 
+        display: none; 
+      }
+    }
 
     .card { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: rgba(127,127,127,0.03); margin-top: 20px; }
     .card h2 { margin: 0; padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 16px; }
@@ -88,8 +112,8 @@
     ul.links li:last-child { border-bottom: 0; }
     .desc { color: var(--muted); font-size: 14px; }
 
-    .bio { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: start; }
-    .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--border); overflow: hidden; }
+    .bio { display: grid; grid-template-columns: 90px 1fr; gap: 14px; align-items: start; }
+    .avatar { width: 90px; height: 90px; border-radius: 50%; background: var(--border); overflow: hidden; }
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
     .name { font-weight: 700; }
     .small { font-size: 14px; color: var(--muted); }
@@ -119,8 +143,15 @@
 <body>
   <div class="wrap">
     <header>
-      <h1 class="title">The Commercial Open Source Report</h1>
-      <div class="meta">Slides, references, and contact</div>
+      <div class="header-content">
+        <div class="header-left">
+          <h1 class="title">The Commercial Open Source Report</h1>
+          <div class="meta">Slides, references, and contact</div>
+        </div>
+        <div class="header-right">
+          <a href="https://docs.google.com/forms/d/14lv42KC025LdjmdXm6lZBKhypLOIdKVV0EcpWdm-OFA/preview" target="_blank" class="subscribe-link">Receive Future Research</a>
+        </div>
+      </div>
     </header>
 
     <section class="card" aria-labelledby="slides-title">
@@ -180,7 +211,7 @@
       <h2>Bio & Contact</h2>
       <div class="content">
         <div class="bio">
-          <div class="avatar"><img src="https://www.serena.vc/wp-content/uploads/2023/04/MatthieuLavergne2023_0041_0_carre-scaled.jpg" alt="Matthieu Lavergne headshot" /></div>
+          <div class="avatar"><img src="./assets/ML.png" alt="Matthieu Lavergne headshot" /></div>
           <div>
             <div class="name">Matt Lavergne</div>
             <div class="small">Partner @ <a href="https://www.serena.vc" target="_blank">Serena</a></a> · Investing in infrastructure software and open source.</div>
@@ -192,6 +223,16 @@
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Stay Updated">
+      <h2>Stay Updated</h2>
+      <div class="content">
+        <p>Get notified about future research and insights on commercial open source software.</p>
+        <p style="margin:8px 0 0">
+          <a href="https://docs.google.com/forms/d/14lv42KC025LdjmdXm6lZBKhypLOIdKVV0EcpWdm-OFA/preview" target="_blank">Subscribe to research updates</a>
+        </p>
       </div>
     </section>
 
