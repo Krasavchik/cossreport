@@ -188,8 +188,8 @@
             allowfullscreen
             title="Embedded Google Slides">
           </iframe>
-          <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle fullscreen">
-            <span>Full Screen</span>
+          <button class="fullscreen-btn" onclick="toggleFullscreen()" title="View in fullscreen or new tab">
+            <span id="fullscreen-text">Full Screen</span>
           </button>
         </div>
       </div>
@@ -277,16 +277,48 @@
       if (iframe && fallback) fallback.href = iframe.src.replace('/embed', '/pub');
     })();
     
+    // Update button text for mobile devices
+    (function updateFullscreenButtonText(){
+      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|OPiOS|mercury/.test(navigator.userAgent);
+      const isAndroid = /Android/.test(navigator.userAgent);
+      const fullscreenText = document.getElementById('fullscreen-text');
+      
+      if (isIOSSafari || isAndroid) {
+        fullscreenText.textContent = 'Open in New Tab';
+      }
+    })();
+    
     function toggleFullscreen() {
       const slideWrap = document.querySelector('.slide-wrap');
+      const iframe = slideWrap.querySelector('iframe');
+      
+      // Check if we're on iOS Safari
+      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|OPiOS|mercury/.test(navigator.userAgent);
+      
+      if (isIOSSafari) {
+        // For iOS Safari, open the presentation in a new tab
+        const presentationUrl = iframe.src.replace('/embed', '/pub');
+        window.open(presentationUrl, '_blank');
+        return;
+      }
+      
       if (!document.fullscreenElement) {
         // Enter fullscreen
         if (slideWrap.requestFullscreen) {
-          slideWrap.requestFullscreen();
+          slideWrap.requestFullscreen().catch(err => {
+            console.log('Fullscreen failed:', err);
+            // Fallback: open in new tab
+            const presentationUrl = iframe.src.replace('/embed', '/pub');
+            window.open(presentationUrl, '_blank');
+          });
         } else if (slideWrap.webkitRequestFullscreen) {
           slideWrap.webkitRequestFullscreen();
         } else if (slideWrap.msRequestFullscreen) {
           slideWrap.msRequestFullscreen();
+        } else {
+          // Fallback: open in new tab
+          const presentationUrl = iframe.src.replace('/embed', '/pub');
+          window.open(presentationUrl, '_blank');
         }
       } else {
         // Exit fullscreen
