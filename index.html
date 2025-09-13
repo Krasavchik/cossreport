@@ -1,35 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HDH4NR8Z2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7HDH4NR8Z2');
-</script>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>COSS Report 2025</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Commercial Open Source Report</title>
+  <meta name="description" content="The Commercial Open Source Report 2025 - 25 years of data on VC-backed open source startups. Key insights on COSS investments, valuations, and market performance by Serena Capital and Linux Foundation." />
+  <meta name="keywords" content="commercial open source, COSS, open source software, venture capital, startup investment, Linux Foundation, Serena Capital, open source business model, software investment" />
+  <link rel="canonical" href="https://cossreport.com/" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The Commercial Open Source Report 2025" />
+  <meta property="og:description" content="25 years of data on VC-backed open source startups. Key insights on COSS investments, valuations, and market performance." />
+  <meta property="og:url" content="https://cossreport.com/" />
+  <meta property="og:image" content="https://www.serena.vc/wp-content/uploads/2023/04/MatthieuLavergne2023_0041_0_carre-scaled.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="The Commercial Open Source Report 2025" />
+  <meta property="twitter:description" content="25 years of data on VC-backed open source startups. Key insights on COSS investments, valuations, and market performance." />
+  <meta property="twitter:image" content="https://www.serena.vc/wp-content/uploads/2023/04/MatthieuLavergne2023_0041_0_carre-scaled.jpg" />
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "The Commercial Open Source Report 2025",
+    "description": "25 years of data on VC-backed open source startups. Key insights on COSS investments, valuations, and market performance.",
+    "url": "https://cossreport.com/",
+    "author": {
+      "@type": "Person",
+      "name": "Matt Lavergne",
+      "jobTitle": "Partner",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Serena Capital"
+      },
+      "url": "https://github.com/Krasavchik"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Serena Capital",
+      "url": "https://www.serena.vc"
+    },
+    "datePublished": "2025-01-01",
+    "inLanguage": "en"
+  }
+  </script>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --link: #2563eb;
     }
-    iframe {
-      border: 0;
-      width: 100%;
-      height: 100%;
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f17;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --link: #60a5fa;
+      }
     }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 24px; }
+    header { padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    header .title { font-size: 20px; font-weight: 700; }
+    header .meta { color: var(--muted); font-size: 14px; }
+
+    .card { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: rgba(127,127,127,0.03); margin-top: 20px; }
+    .card h2 { margin: 0; padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 16px; }
+    .card .content { padding: 12px; }
+
+    .slide-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+    .slide-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    ul.links { list-style: none; padding: 0; margin: 8px 0 0; }
+    ul.links li { padding: 8px 0; border-bottom: 1px dashed var(--border); }
+    ul.links li:last-child { border-bottom: 0; }
+    .desc { color: var(--muted); font-size: 14px; }
+
+    .bio { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: start; }
+    .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--border); overflow: hidden; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .name { font-weight: 700; }
+    .small { font-size: 14px; color: var(--muted); }
+
+    footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7HDH4NR8Z2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7HDH4NR8Z2');
+  </script>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7HDH4NR8Z2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7HDH4NR8Z2');
+  </script>
 </head>
 <body>
-    
-  <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRYHJXfCCQ-xBOHIVhvPMmeaX-BkzxpRJ5bsjMwYx04J56WKCfN91E-gHG02mrs7KUUj1cWUHTDp4XS/pubembed?start=true&loop=false&delayms=3000" allowfullscreen></iframe>
+  <div class="wrap">
+    <header>
+      <h1 class="title">The Commercial Open Source Report</h1>
+      <div class="meta">Slides, references, and contact</div>
+    </header>
+
+    <section class="card" aria-labelledby="slides-title">
+      <h2 id="slides-title">Slides</h2>
+      <div class="content">
+        <div class="slide-wrap">
+          <iframe
+            src="https://docs.google.com/presentation/d/e/2PACX-1vRYHJXfCCQ-xBOHIVhvPMmeaX-BkzxpRJ5bsjMwYx04J56WKCfN91E-gHG02mrs7KUUj1cWUHTDp4XS/pubembed"
+            allowfullscreen
+            title="Embedded Google Slides">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="References">
+      <h2>References & Links</h2>
+      <div class="content">
+        <ul class="links">
+            <li>
+                <a href="https://blog.serenacapital.com/the-open-source-payoff-5e835c54c0f1" rel="noopener" target="_blank">The Open Source Payoff</a>
+                <div class="desc">The Data-Backed Financial Case from 25 Years of Commercial Open Source</div>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=fgODNZrsenY&t=1524s" rel="noopener" target="_blank"> Keynote: the State of Commercial Open Source 2025</a>
+                <div class="desc">OSS Summit Europe 2025: Opening Keynote</div>
+            </li>
+            <li>
+                <a href="https://www.linuxfoundation.org/hubfs/Research%20Reports/lfr_serena_capital_report_082225b.pdf?hsLang=en" rel="noopener" target="_blank">2025 report with a Community Extension</a>
+                <div class="desc">Co-authored with the Linux Foundation and COSSA.</div>
+            </li>
+            <li>
+                <a href="https://www.linuxfoundation.org/hubfs/Research%20Reports/lfr_serena_capital_report_082225b.pdf?hsLang=en" rel="noopener" target="_blank">Press Release: The State of Commercial Open Source 2025</a>
+                <div class="desc">Linux Foundation, COSSA and Serena Report Shows Venture Investment in Open Source Outperforms Proprietary Counterparts and Benefits Communities</div>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=8WyzsERJyYg" rel="noopener" target="_blank">How Open Source is Beating the Market: The VC Case for COSS</a>
+                <div class="desc">OSS Summit Europe 2025: BoF Session</div>
+            </li>
+            <li>
+                <a href="https://docsend.com/view/zgbwtzgj72nvzszq" rel="noopener" target="_blank">AI, Angels, US & EU investing</a>
+                <div class="desc">Supercharge your Startup - OVHcloud Podcast</div>
+            </li>
+            <li>
+                <a href="https://smartlink.ausha.co/supercharge-your-startup/the-world-of-vc-ai-angels-european-vs-usa-investment-open-source-and-more" rel="noopener" target="_blank">The Commercial Open Source Report 2024</a>
+                <div class="desc">Insights on how tech companies are building value with open-source software.</div>
+            </li>
+            <li>
+                <a href="https://blog.serenacapital.com/the-commercial-open-source-report-2024-3b4a8b4ebd08" rel="noopener" target="_blank">Introducing the 2024 report</a>
+                <div class="desc">Insights on how tech companies are building value with open-source software.</div>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Bio">
+      <h2>Bio & Contact</h2>
+      <div class="content">
+        <div class="bio">
+          <div class="avatar"><img src="https://www.serena.vc/wp-content/uploads/2023/04/MatthieuLavergne2023_0041_0_carre-scaled.jpg" alt="Matthieu Lavergne headshot" /></div>
+          <div>
+            <div class="name">Matt Lavergne</div>
+            <div class="small">Partner @ <a href="https://www.serena.vc" target="_blank">Serena</a></a> · Investing in infrastructure software and open source.</div>
+            <p style="margin:8px 0 0">
+              <a href="https://www.linkedin.com/in/matthieulavergne" rel="noopener" target="_blank">LinkedIn</a> ·
+              <a href="https://github.com/Krasavchik" rel="noopener" target="_blank">GitHub</a> ·
+              <a href="https://x.com/MatthieuLav" rel="noopener" target="_blank">X / Twitter</a> ·
+              <a href="https://medium.com/@matthieu.lavergne" rel="noopener" target="_blank">Medium</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="y"></span> Matt Lavergne</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    (function mirrorSlidesLink(){
+      const iframe = document.querySelector('iframe[title="Embedded Google Slides"]');
+      const fallback = document.getElementById('slides-link');
+      if (iframe && fallback) fallback.href = iframe.src.replace('/embed', '/pub');
+    })();
+  </script>
 </body>
 </html>
