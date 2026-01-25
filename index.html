@@ -156,16 +156,6 @@
     gtag('js', new Date());
     gtag('config', 'G-7HDH4NR8Z2');
   </script>
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7HDH4NR8Z2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-7HDH4NR8Z2');
-  </script>
 </head>
 <body>
   <div class="wrap">
@@ -226,7 +216,7 @@
                 <div class="desc"><span class="desc-text"><u>OSS Summit Europe 2025</u>: BoF Session</span><span class="date">August 2025</span></div>
             </li>
             <li>
-              <a href="https://www.linkedin.com/posts/matthieulavergne_opensource-activity-7341789595866476546-5sPb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAO3wpQBNyZhVW8RnD7iflR0lIuFK7wvwxM"" rel="noopener" target="_blank">Open Source Monetization</a>
+              <a href="https://www.linkedin.com/posts/matthieulavergne_opensource-activity-7341789595866476546-5sPb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAO3wpQBNyZhVW8RnD7iflR0lIuFK7wvwxM" rel="noopener" target="_blank">Open Source Monetization</a>
               <div class="desc"><span class="desc-text"><u>Vivatech 2025</u>, Panel</span><span class="date">June 2025</span></div>
           </li>
             <li>
@@ -290,25 +280,24 @@
       const fallback = document.getElementById('slides-link');
       if (iframe && fallback) fallback.href = iframe.src.replace('/embed', '/pub');
     })();
-    
+
+    // Device detection helpers
+    const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|OPiOS|mercury/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
     // Update button text for mobile devices
     (function updateFullscreenButtonText(){
-      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|OPiOS|mercury/.test(navigator.userAgent);
-      const isAndroid = /Android/.test(navigator.userAgent);
       const fullscreenText = document.getElementById('fullscreen-text');
-      
+
       if (isIOSSafari || isAndroid) {
         fullscreenText.textContent = 'Full Screen';
       }
     })();
-    
+
     function toggleFullscreen() {
       const slideWrap = document.querySelector('.slide-wrap');
       const iframe = slideWrap.querySelector('iframe');
-      
-      // Check if we're on iOS Safari
-      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|OPiOS|mercury/.test(navigator.userAgent);
-      
+
       if (isIOSSafari) {
         // For iOS Safari, open the presentation in a new tab
         const presentationUrl = iframe.src.replace('/embed', '/pub');
