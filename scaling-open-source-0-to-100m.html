@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scaling Open Source From 0 to $100M with Oskari Saarenmaa — The Commercial Open Source Report</title>
+  <meta name="description" content="Fireside chat with Oskari Saarenmaa (CEO & co-founder, Aiven) on scaling Aiven to $100M ARR on open source — recorded at Serena's Commercial Open Source event, July 2026." />
+  <meta name="keywords" content="commercial open source, COSS, Aiven, Oskari Saarenmaa, open core, Apache Kafka, managed cloud service, open source business model, Serena Capital, Matthieu Lavergne" />
+  <link rel="canonical" href="https://cossreport.com/scaling-open-source-0-to-100m.html" />
+  <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Scaling Open Source From 0 to $100M with Oskari Saarenmaa" />
+  <meta property="og:description" content="Fireside chat with Oskari Saarenmaa (CEO & co-founder, Aiven) on scaling Aiven to $100M ARR on open source." />
+  <meta property="og:url" content="https://cossreport.com/scaling-open-source-0-to-100m.html" />
+  <meta property="og:image" content="https://img.youtube.com/vi/abjmylAtYF4/maxresdefault.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Scaling Open Source From 0 to $100M with Oskari Saarenmaa" />
+  <meta property="twitter:description" content="Fireside chat with Oskari Saarenmaa (CEO & co-founder, Aiven) on scaling Aiven to $100M ARR on open source." />
+  <meta property="twitter:image" content="https://img.youtube.com/vi/abjmylAtYF4/maxresdefault.jpg" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Scaling Open Source From 0 to $100M with Oskari Saarenmaa",
+    "description": "Fireside chat with Oskari Saarenmaa (CEO & co-founder, Aiven) on scaling Aiven to $100M ARR on open source.",
+    "url": "https://cossreport.com/scaling-open-source-0-to-100m.html",
+    "author": {
+      "@type": "Person",
+      "name": "Matt Lavergne",
+      "jobTitle": "Partner",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Serena Capital"
+      },
+      "url": "https://github.com/Krasavchik"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Serena Capital",
+      "url": "https://www.serena.vc"
+    },
+    "datePublished": "2026-07-17",
+    "inLanguage": "en",
+    "video": {
+      "@type": "VideoObject",
+      "name": "Scaling Open Source From 0 to $100M with Oskari Saarenmaa",
+      "description": "Fireside chat with Oskari Saarenmaa (CEO & co-founder, Aiven), recorded at Serena's Commercial Open Source event, July 2026.",
+      "thumbnailUrl": "https://img.youtube.com/vi/abjmylAtYF4/maxresdefault.jpg",
+      "uploadDate": "2026-07-17",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/abjmylAtYF4"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --link: #2563eb;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f17;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --link: #60a5fa;
+      }
+    }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 24px; }
+    header { padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .back { color: var(--muted); font-size: 14px; }
+    .back:hover { color: var(--link); }
+
+    article { margin-top: 24px; }
+    article h1 { font-size: 32px; line-height: 1.2; margin: 0 0 10px; }
+    article .deck { font-size: 19px; color: var(--muted); margin: 0 0 16px; }
+    article .byline { color: var(--muted); font-size: 14px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    article h2 { font-size: 24px; line-height: 1.25; margin: 40px 0 12px; }
+    article p { margin: 0 0 16px; }
+    article blockquote {
+      margin: 24px 0; padding: 4px 0 4px 20px;
+      border-left: 3px solid var(--link);
+      font-size: 20px; line-height: 1.4; color: var(--text);
+    }
+    .lead { font-size: 18px; }
+
+    .video-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 10px; overflow: hidden; margin: 28px 0; }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    .context-note {
+      margin: 0 0 8px; padding: 14px 16px;
+      border: 1px solid var(--border); border-radius: 10px;
+      background: rgba(127,127,127,0.03);
+      color: var(--muted); font-size: 14px; line-height: 1.5;
+    }
+    .transcript { margin-top: 32px; padding-top: 8px; }
+    .turn { margin: 0 0 18px; }
+    .turn .speaker { font-weight: 700; color: var(--text); }
+    .turn.aside { color: var(--muted); font-style: italic; }
+    .stage { color: var(--muted); font-style: italic; }
+
+    .disclaimer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+    footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7HDH4NR8Z2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7HDH4NR8Z2');
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="back" href="./">← The Commercial Open Source Report</a>
+    </header>
+
+    <article>
+      <h1>Scaling Open Source From 0 to $100M with Oskari Saarenmaa</h1>
+      <p class="deck">A fireside chat with Oskari Saarenmaa, CEO &amp; co-founder of Aiven</p>
+      <div class="byline">By Matt Lavergne · July 2026</div>
+
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/abjmylAtYF4"
+          title="Scaling Open Source From 0 to $100M with Oskari Saarenmaa"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p class="context-note">Recorded at Serena's Commercial Open Source event, sponsored by AWS — July 2026. Matt Lavergne (Partner, Serena) in conversation with Oskari Saarenmaa, CEO &amp; co-founder of Aiven, followed by audience Q&amp;A. The transcript below was machine-transcribed and lightly edited for readability.</p>
+
+      <div class="transcript">
+        <p class="turn"><span class="speaker">Matt:</span> Quantitative data is great for understanding and modeling the world around us. But when it comes to inspiration, the gold standard is real-life examples. So tonight we're honored to have Oskari Saarenmaa with us, the CEO of Aiven. Oskari, you spent eight years at F-Secure, a publicly listed global cybersecurity company — where you met your co-founder, Hannu, with whom you've embarked on an 11-year journey building Aiven. Aiven is the open-source data infrastructure that runs on any cloud, giving technical teams the ability to manage and use their data in a seamless and secure fashion. Oskari, welcome.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Thank you, and thanks for having me. It's really good to be here.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Very happy to have you. Before we start, I want to give a shout-out to our sponsor for this event, AWS, represented tonight by Jean-Francois — who's been a great help, not only tonight but throughout this entire research journey around open source. So to get started: Aiven has reached $100 million in ARR, and you've done it without proprietary features — no open-core, no dual licensing. So my first question: what would you tell a founder today who believes they need proprietary features to build a real business?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> It's worth looking at how we got started, because things have changed over the 11 years we've been building and running Aiven. Open-core was a very popular model in the 2010s. You'd see a lot of people come up with new open-source technologies and then build a company around them. Often you'd have a community edition with most of the features available under an open-source license, and then a set of features available under a different kind of license, like a source-available license. So you could look at the code and run it, but you couldn't use it in a commercial business. Sometimes there was nuance — you could use it as part of a commercial offering, but you couldn't offer the software itself commercially without a specific license.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> First of all, I'm a developer by background, and I'm very happy for people to license the code they write under any license they choose. But when you really look at what's open and why open-source projects are popular, the whole open-core model — a proprietary set of features on top of an open-source project — isn't really making it into the 2020s. And it sounds like the crowd down there agrees. Open-core was a 2010s business model. What happened was that cloud overtook all of it, and the companies that started with just their own proprietary and community editions really struggled to scale when they had to compete head-to-head with people offering these products in the cloud.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> To some extent that included us. We initially looked at open-source projects like Postgres and Apache Kafka and started packaging them up as managed cloud services, so our customers could get access to those technologies easily without having to set them up themselves. Speaking about this in 2026 feels a bit odd, because it's so obvious now — but back in 2015 and 2016, when we went to production for the first time, it was still pretty new and novel, and not a lot of people were doing it.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Are you saying that people pay you for convenience?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Yes, that's absolutely true — that's what's happening in the cloud. Open source has always been available; you can go to GitHub and check out any of this code, but that doesn't mean it's accessible. For most businesses out there, their business is not managing open-source databases. It's also not managing proprietary databases. They're looking to do something completely different, and having access to a managed service that just works is convenient — but more importantly, it lets them get on with their own business, which is the most important part.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> And is security a big component of the monetization as well?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Yes. A lot of engineers will say, "Oh, I can just run this," and that's correct — it's not that difficult to run most of these technologies on your laptop. But when you have to ship something to production, keep it online, available, and secure, apply all the security fixes, and upgrade to the next version — all of that starts to take a toll. And that's not the core competence or something that differentiates most businesses. So we excel at that; it's the only thing we do. We run these open-source databases and data-streaming products, and we win our customers' trust by doing exactly that.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> How do you think about retention? The product is free, it's your own cloud, it's your own data. So what makes people stay with Aiven once they scale with you?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> A couple of things, and it goes back to trust. A lot of our customers start small and then keep growing. They don't come in with a massive workload migrated overnight from another platform — they start building something new on Aiven. And this isn't just about Aiven; it's probably applicable to most database cloud products. People start small, try out a new product, and as that product takes off, they scale with you. You win trust by showing you're a reliable partner, probably over the course of many weeks, months, quarters, and years. Things just work, and problems get resolved automatically, or at least with very minimal interaction from the customer.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> The other great thing about data products is that data is ultimately the only moat a lot of companies have. So they build more use cases around their data, and data has a certain gravity — it tends to pull in more data and more use cases. If you can keep creating a product and a business that makes access to data efficient and effortless, it tends to keep growing over time.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Speaking about customers scaling with usage — can you describe a motion from a developer using Aiven to a six-figure enterprise contract?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Pretty much all of our customers that scaled big — beyond six figures, into seven and eight figures — started small. It could be a couple of engineers finding a managed Kafka service, which at the time wasn't that commonly available in the cloud. We were one of the first to offer Apache Kafka as a managed cloud service. So we'd get a couple of users initially, and the first year we might go from something like $10,000 ARR with one customer to $100K the next year, to $500K the following year, to $2 million the year after, and so forth. We have multiple examples of that.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> What makes this happen is not that you find one massive workload that just grows — that happens too. But what's more powerful is building a product that's baked into all the workflows of developers across different teams. So you don't go after one single massive workload; you become the de facto tooling and platform for dozens of different teams. You may have hundreds or thousands of use cases within an enterprise, all running on your product, and you become the data platform of choice for that enterprise.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Can you describe the moment where a technical user is using the product and at some point needs to go to the buyer persona and ask for budget for Aiven? What triggers that conversation, and what makes the technical buyer win the budget?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> It's very simple: you're able to demonstrate value from day one — and these days that day one should really be hour one, or even minute one. Before anybody has to sign a big contract or make big commitments, they can easily see that this product and company are delivering tangible value. People love to hate the concept of shadow IT, but it's a very powerful mechanism for getting started, trying out new products, and seeing whether they're actually useful for your business. So instead of going top-down and trying to get a million-euro deal signed on day one, you see use cases being built on the platform. It's then much easier to have the discussion with the actual owner of the budget — the economic buyer — because you're already demonstrating that you're adding a lot of value to their business.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> So shadow IT is a segue to the larger contract?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Yes, it works pretty well in a lot of cloud businesses. Of course, it's sometimes annoying when you're footing the bill for it. This happens even inside my own business — at Aiven we have tons of vendors and tools, and sometimes I wonder why on earth we're buying yet another product for a particular use case. But if it's costing 20 bucks, who cares? If it shows that it's better and more valuable than the other offerings, then maybe we should be migrating toward it for a lot of future use cases too.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Can you describe the go-to-market motion and how it evolved at Aiven — maybe from PLG to sales? How have you thought about it, and how did the company evolve on the sales side?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> We started with a product-led motion early on, when we just made the product available on the cloud. But you couldn't even really call it PLG, because we just made the product available and hoped somebody would notice and start buying. It took a bit of work to figure out how that motion actually works and scales. Pretty soon we realized that if we wanted to grow these accounts — it's great to have a couple of people buying your product for $200 a month on a credit card, but to grow them you have to go meet these people, build relationships, and understand what they're actually looking to achieve. That goes beyond "I want to buy a Kafka cluster." Very few people's problem is that they don't have a Kafka cluster; they're trying to solve something else, and it's worth understanding the pain or opportunity they're solving for.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> To summarize, the motion that's worked most efficiently has been landing and expanding these accounts. You often land them with a product win, and then you have a bunch of opportunities to expand. Selling database and data products to people who aren't yet familiar with your company, brand, or product is really hard, because you usually can't take a new data product and apply it to an existing problem to make it go away. You have to start building on a database or data-streaming technology. Catching somebody who's just starting to build something new isn't easy, so you have to build awareness over time to get those opportunities.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Are you saying you use sales to grow expansion revenue with an existing customer, as opposed to getting new customers out the door?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> It's both. A lot of it is expanding the existing customer base — that's where you have great people managing those accounts and understanding the opportunities in current and new use cases, going from one team to another, one department to another. That's a huge opportunity. But you'll also get hand-raisers: people you meet at events who are working on something new and trying to figure out the best technology for a certain data use case. So it's not only waiting for the product to land — but if you look at the number of customers and workloads, product-led adoption has the highest volume of new use cases and new users.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> What were your revenue levels when you hired your first salesperson?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> We hired our first salesperson when we were doing about half a million of ARR, and we'd just raised our seed round — this was back in 2017. For the first year of the business it was just the four founders, all developers by background, building everything. Then we hired our first head of sales and started adding a couple of reps. One of the roles that helped us scale the existing customers was bringing in what we called solutions architects at the time. Today we'd probably just call them FDEs and not pretend we don't do any services — but it was a different time in 2017.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> So very early for the sales hiring. Moving to the community aspect — how do you think about what gets contributed upstream versus what goes into more of a commercial product? I know everything is open at Aiven, but…</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> One clarification: all of the code used to run a database for our customers is open source. There's nothing that would lock a customer to Aiven through a custom extension to Postgres or Kafka. We do have a proprietary management plane that takes care of setting up and configuring Kafka and Postgres, but it doesn't do magic that's completely proprietary to Aiven.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Early on, we got started by contributing bug fixes and sometimes small feature add-ons to these open-source projects — things that were important for our ability to run them efficiently in the cloud. Plus we created tools for backing up different databases efficiently to cloud object stores; we wanted to stream backups to S3 or Google Cloud Storage, or build REST APIs for Kafka — these peripheral add-ons to the core open-source technologies. We open-sourced all of that.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> It wasn't until a couple of years ago that we changed our strategy on contributing to the core open-source projects. We saw that we also needed to differentiate Aiven and make sure we were creating the best possible managed Kafka service in the cloud. You'd see proprietary implementations of the Kafka protocol come up — like WarpStream, by Confluent — but we wanted to make sure those same capabilities also existed in the open-source projects. And if it wasn't us developing them, who would it be? So we made a serious decision to shift a lot of our development effort into improving upstream Apache Kafka by adding major features.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Because it's an Apache Software Foundation project, the members of that project ultimately decide what gets included upstream and what doesn't, and of course we respect that. But we wouldn't wait until the upstream had decided what goes in and in what shape. So we set up what I guess we should call a fork — although I don't like calling it a fork, because our mission for it is for the fork to eventually die and get completely merged upstream. Today we're shipping code from that open-source fork of Apache Kafka to our customers, so they get access to features faster than the community can integrate all the proposed changes upstream.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Moving to AI. The survey we've run has an interesting figure: 80% of commercial open-source companies say AI is net positive to their business. So I'd like you to answer that: from where you sit, what's the impact of AI on your business, and how has it changed the conversation with your prospects and customers?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> AI is changing everything, across all industries and businesses. It would be very naive to claim that my business or my industry isn't affected by it. AI is also the coolest thing that's come up in tech for a really long time — we're witnessing a really interesting paradigm shift in how software gets built, used, and run, something we haven't seen before.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> So what's the impact on businesses like ours, and on open source? It's going to change most things. But what doesn't necessarily change is that you still need people who care deeply about creating these products — the foundational infrastructure for other businesses and technologies. Some of the code will be written by agents instead of humans, and I know some software developers who really enjoy writing that code will feel a bit sad about the change in their roles. I empathize with them. I used to do that too — I don't get to as much nowadays — but just typing out program code is interesting and fun. Reviewing code created by a large language model is a very different thing from typing out something in C, Python, or JavaScript yourself. So that's a big change in how software gets built.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> But how do you handle the objection — "we're not going to buy from you because Claude Code is going to be able to do the same thing"? It's a bit blunt, but…</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> It's the cliché that comes up in every meeting nowadays. Two weekends ago I was at a little event and this same question was asked three times: "When is Claude Code going to replace you guys? What about you guys?" And sure enough, what Claude and some of the other agents and LLMs can do now is write a lot of software code — within minutes and hours what previously took years to create.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> But if you think about companies like ours, or many of yours, you don't exist just because you created a piece of software overnight. You exist because you understand the business problems your customers face, and you've accumulated context and data over the years, as well as expertise in how to efficiently solve for this class of problems. And yes, you solve for it by creating software that implements the solutions, instead of manually covering these cases one by one. In some cases, if the solution is simple enough, maybe Claude Code will come up with a custom solution that's better and more efficient than an off-the-shelf product. But as much as people would like to see companies like Workday, Atlassian, Salesforce, and Oracle replaced by agents writing code, I don't think that's going to happen this quarter, this year, or next year. I think we're going to see a lot of these companies thrive as they get better at using the huge amounts of data and context they've generated over years of running their businesses at scale.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> So what you're saying is that subject-matter expertise isn't going to go away, even though Claude Code can code for you. Is that right?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Yes, absolutely. If you think about the sizes of organizations where in-housing these tools has made sense, you will see some changes. Previously it was only some of the very largest enterprises in the world where it made sense to have in-house implementations of a lot of productivity tools — or maybe "productivity tools" isn't even the right term, but some kind of ERPs, for example. Now somewhat smaller organizations will have the ability to create something unique and custom for themselves that would have been impossible to do efficiently before. But for the vast majority of companies, we're very far from it being a sensible business decision to replace all the open-source and proprietary software we currently rely on — along with the services around it — by just having Claude take over everything.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Maybe a last question before we take questions from the audience: what advice would you give a founder building in open source in 2026?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> One thing is to build something cool and unique that you actually have experience and expertise in — something you can be passionate about, where you can create something better than what's available. The cost of replacing a lot of these things is going to come down, and that's okay, but you can still create something cool that doesn't exist today and start providing it to other people who can benefit from it. But creating something cool doesn't immediately mean you have a business model for it. That's important to note: open source never was a business model. You'd see a lot of cool open-source-based companies performing really well — but not just because they happened to have one open-source project. They were solving problems that a lot of organizations and people had, and they brought all the subject-matter expertise to do that efficiently.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Very true. At the end of the day you're still building a software business, and open source is one of the central questions in picking what you're doing. Let's take some questions from the audience. Yes.</p>
+
+        <p class="turn"><span class="speaker">Audience — AI / infrastructure:</span> I have a specific question, because we're in a similar sector — database, infrastructure, open source, and I'm in the AI space. The question is: how do you create trust between an open-source project and an enterprise? We license under AGPL and so on, but the dev teams can still deploy it themselves — smaller teams don't want the hassle, so they just pull the API. But for the enterprise, what's the main way to create trust in a particular open-source project?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> If you think about how to monetize enterprise adoption of your project — that's tough, and candidly it was never a business model I was involved in. We were always about running a managed cloud service, rather than providing open-source software and selling support or services for it in the enterprise. But I think the same model applies: if your open-source software is running critical functions within an enterprise, you can still pursue the traditional model of selling them support. A lot of these enterprises truly rely on you on a critical path, and they'll be more than happy to start paying something for support. But that's potentially not going to be the million-dollar deal you'd like it to be. At least that's been my experience — as both a buyer and a seller of software.</p>
+
+        <p class="turn"><span class="speaker">Audience — AI / infrastructure:</span> Okay, thank you.</p>
+
+        <p class="turn"><span class="speaker">Audience — ClickHouse (director of product):</span> Small disclaimer: I work for ClickHouse, I'm director of product. I have a couple of questions. The first is about how you guarantee that some of the work you're doing goes back to open source. You mentioned Kafka and the work you do for everyone in Kafka — but Kafka isn't the only service you're managing, right? You manage ClickHouse, OpenSearch. How do you make sure there's enough R&D on your side — because you're benefiting from the open-source model? At ClickHouse, for example, 99% of our development goes back into open source. How do you make sure you contribute back on some of the projects where you don't have deep expertise?</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> If we go back in time a little — as I said earlier, when we started we were in large part a consumer of the core open-source projects. We'd create adjacent open-source projects for backups, replication, and so on, but we didn't spend much time on the core products themselves. That changed over the past couple of years, when we started to narrow our focus to a smaller number of critical open-source projects and build a lot more depth in them.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Two or three years ago we had a specific open-source program office at Aiven, which was only about open-source contributions. They'd contribute fixes and features here and there and maintain a couple of projects. But they weren't focused on specific projects with a mission to develop things that matter deeply to us and our customers — which, in hindsight, didn't make a lot of sense. So we changed that. Kafka is an easy example to call out, where we really saw the need for decoupling of compute and storage — which applies to all the services we run today: Postgres, OpenSearch, ClickHouse. It doesn't make sense to run these technologies in the cloud the same way you would have on a private server 15 years ago.</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> So that's a specific area where we're looking to contribute back, where needed, to all the open-source projects that matter to us. In some we're further along, and in some not as far — it also relates to the scale of those technologies on our side. We have most developers on things like Kafka and Postgres, and fewer on technologies that are smaller to us, like ClickHouse — which I understand is doing incredibly well on your managed cloud service, so congrats on all of that.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> One last question — there's another one in the back. <span class="stage">[The microphone is handed to an audience member.]</span></p>
+
+        <p class="turn aside"><span class="speaker">Audience member:</span> [Question asked largely off-mic and mostly inaudible in the recording. Gist from audible fragments: the speaker has been building an open-source project for about six years, is now being pushed to commercialize it, and asks about Aiven's early history — how the project got its first spike of open-source awareness and adoption.]</p>
+
+        <p class="turn"><span class="speaker">Oskari:</span> Really early on, the first awareness work was Twitter and social media, and going to conferences to talk about what you're doing — grassroots adoption with developers, the actual users of the product. Especially early on, the user was also the customer, so we didn't think much about what came after that. But of course we realized we were building a data product, so it also had to be scalable, secure, and work for the enterprise. A lot of that came naturally to us because all of our founders had a background in security. So we never faced the issue of "we built something cool, but nobody's going to trust it in the enterprise." Early on it was just very grassroots adoption — I think that's what worked for most of the successful open-source projects out there, including ClickHouse before the company existed. ClickHouse was a cool technology that everybody was talking about.</p>
+
+        <p class="turn"><span class="speaker">Matt:</span> Thank you so much for your time and your insights. And thank you all for participating — now it's time for drinks and food. Enjoy.</p>
+      </div>
+
+      <p class="disclaimer">Transcript machine-transcribed and lightly edited for readability. Quotes are attributed to the speakers as spoken; any figures mentioned in conversation should be checked against the published reports before being cited as data.</p>
+    </article>
+  </div>
+</body>
+</html>
