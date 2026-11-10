@@ -7,7 +7,7 @@
   <meta name="description" content="The Commercial Open Source Report 2025 - 25 years of data on VC-backed open source startups. Key insights on COSS investments, valuations, and market performance by Serena Capital and Linux Foundation." />
   <meta name="keywords" content="commercial open source, COSS, open source software, venture capital, startup investment, Linux Foundation, Serena Capital, open source business model, software investment" />
   <link rel="canonical" href="https://cossreport.com/" />
-  <link rel="preconnect" href="https://docs.google.com" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
@@ -105,8 +105,31 @@
     .card h2 { margin: 0; padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 16px; }
     .card .content { padding: 12px; }
 
-    .slide-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
-    .slide-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .viewer { background: #000; outline: none; }
+    .viewer:focus-visible { box-shadow: 0 0 0 2px var(--link); }
+    /* Report pages are US Letter landscape (11 x 8.5 in) */
+    .slide-wrap { position: relative; width: 100%; padding-top: 77.27%; background: #000; cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: pan-y; }
+    .slide-wrap canvas { position: absolute; inset: 0; margin: auto; display: block; }
+    .slide-status { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 16px; color: #9ca3af; font-size: 14px; text-align: center; }
+    .slide-status[hidden] { display: none; }
+    .slide-status a { color: #93c5fd; }
+    .slide-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; padding: 8px; background: #111; color: #e5e7eb; font-size: 14px; }
+    .slide-nav .nav-group { grid-column: 2; display: flex; align-items: center; gap: 12px; }
+    .slide-nav .fullscreen-btn { position: static; justify-self: end; white-space: nowrap; background: rgba(255,255,255,0.08); }
+    .slide-nav .fullscreen-btn:hover { background: rgba(255,255,255,0.18); }
+    @media (max-width: 480px) {
+      .slide-nav { grid-template-columns: 1fr auto; }
+      .slide-nav .nav-group { grid-column: 1; gap: 6px; }
+      .slide-count { min-width: 56px; }
+    }
+    .nav-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 6px; background: rgba(255,255,255,0.08); color: inherit; cursor: pointer; transition: background-color 0.2s; }
+    .nav-btn:hover:not(:disabled) { background: rgba(255,255,255,0.18); }
+    .nav-btn:disabled { opacity: 0.35; cursor: default; }
+    .slide-count { min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; }
+    .viewer:fullscreen { display: flex; flex-direction: column; }
+    .viewer:fullscreen .slide-wrap { flex: 1; padding-top: 0; }
+    .viewer:-webkit-full-screen { display: flex; flex-direction: column; width: 100%; height: 100%; }
+    .viewer:-webkit-full-screen .slide-wrap { flex: 1; padding-top: 0; }
     .fullscreen-btn {
       position: absolute;
       top: 12px;
@@ -175,16 +198,25 @@
     <section class="card" aria-labelledby="slides-title">
       <h2 id="slides-title">Slides</h2>
       <div class="content">
-        <div class="slide-wrap">
-          <iframe
-            src="https://docs.google.com/presentation/d/e/2PACX-1vRYHJXfCCQ-xBOHIVhvPMmeaX-BkzxpRJ5bsjMwYx04J56WKCfN91E-gHG02mrs7KUUj1cWUHTDp4XS/pubembed"
-            allowfullscreen
-            loading="lazy"
-            title="Embedded Google Slides">
-          </iframe>
-          <button class="fullscreen-btn" onclick="toggleFullscreen()" title="View in fullscreen or new tab">
-            <span id="fullscreen-text">Full Screen</span>
-          </button>
+        <div class="viewer" id="viewer" tabindex="0" data-pdf="./assets/state-of-commercial-open-source-2026.pdf" role="region" aria-label="The State of Commercial Open Source 2026 report">
+          <div class="slide-wrap" id="slide-stage">
+            <canvas id="slide-canvas" aria-hidden="true"></canvas>
+            <div class="slide-status" id="slide-status">Loading report…</div>
+          </div>
+          <div class="slide-nav">
+            <div class="nav-group">
+              <button class="nav-btn" id="slide-prev" aria-label="Previous page" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <span class="slide-count" id="slide-count" aria-live="polite">&nbsp;</span>
+              <button class="nav-btn" id="slide-next" aria-label="Next page" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()" title="View in fullscreen or new tab">
+              <span id="fullscreen-text">Full Screen</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -282,11 +314,7 @@
   <script>
     const yearEl = document.getElementById('y');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
-    (function mirrorSlidesLink(){
-      const iframe = document.querySelector('iframe[title="Embedded Google Slides"]');
-      const fallback = document.getElementById('slides-link');
-      if (iframe && fallback) fallback.href = iframe.src.replace('/embed', '/pub');
-    })();
+    const REPORT_PDF = document.getElementById('viewer').dataset.pdf;
 
     // Device detection helpers
     const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|OPiOS|mercury/.test(navigator.userAgent);
@@ -302,33 +330,29 @@
     })();
 
     function toggleFullscreen() {
-      const slideWrap = document.querySelector('.slide-wrap');
-      const iframe = slideWrap.querySelector('iframe');
+      const viewer = document.getElementById('viewer');
 
       if (isIOSSafari) {
-        // For iOS Safari, open the presentation in a new tab
-        const presentationUrl = iframe.src.replace('/embed', '/pub');
-        window.open(presentationUrl, '_blank');
+        // For iOS Safari, open the report in a new tab
+        window.open(REPORT_PDF, '_blank');
         return;
       }
-      
-      if (!document.fullscreenElement) {
+
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
         // Enter fullscreen
-        if (slideWrap.requestFullscreen) {
-          slideWrap.requestFullscreen().catch(err => {
+        if (viewer.requestFullscreen) {
+          viewer.requestFullscreen().catch(err => {
             console.log('Fullscreen failed:', err);
             // Fallback: open in new tab
-            const presentationUrl = iframe.src.replace('/embed', '/pub');
-            window.open(presentationUrl, '_blank');
+            window.open(REPORT_PDF, '_blank');
           });
-        } else if (slideWrap.webkitRequestFullscreen) {
-          slideWrap.webkitRequestFullscreen();
-        } else if (slideWrap.msRequestFullscreen) {
-          slideWrap.msRequestFullscreen();
+        } else if (viewer.webkitRequestFullscreen) {
+          viewer.webkitRequestFullscreen();
+        } else if (viewer.msRequestFullscreen) {
+          viewer.msRequestFullscreen();
         } else {
           // Fallback: open in new tab
-          const presentationUrl = iframe.src.replace('/embed', '/pub');
-          window.open(presentationUrl, '_blank');
+          window.open(REPORT_PDF, '_blank');
         }
       } else {
         // Exit fullscreen
@@ -340,6 +364,127 @@
           document.msExitFullscreen();
         }
       }
+    }
+  </script>
+
+  <script type="module">
+    // Page-by-page report viewer (PDF.js legacy build, for older Safari too)
+    const PDFJS = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/legacy/build/';
+    const viewer = document.getElementById('viewer');
+    const stage = document.getElementById('slide-stage');
+    const canvas = document.getElementById('slide-canvas');
+    const statusEl = document.getElementById('slide-status');
+    const prevBtn = document.getElementById('slide-prev');
+    const nextBtn = document.getElementById('slide-next');
+    const countEl = document.getElementById('slide-count');
+    const PDF_URL = viewer.dataset.pdf;
+
+    let pdf = null, current = 1, renderSeq = 0, task = null;
+
+    function fail(err) {
+      console.error('Report viewer:', err);
+      statusEl.hidden = false;
+      statusEl.innerHTML = '<a href="' + PDF_URL + '" target="_blank" rel="noopener">Open the report (PDF)</a>';
+    }
+
+    async function render() {
+      if (!pdf) return;
+      const seq = ++renderSeq;
+      const page = await pdf.getPage(current);
+      if (seq !== renderSeq) return;
+      const box = stage.getBoundingClientRect();
+      if (!box.width || !box.height) return;
+      const base = page.getViewport({ scale: 1 });
+      const fit = Math.min(box.width / base.width, box.height / base.height);
+      const dpr = Math.min(window.devicePixelRatio || 1, 3);
+      const viewport = page.getViewport({ scale: fit * dpr });
+      // Render off-screen, then swap in, so page turns don't flash
+      const off = document.createElement('canvas');
+      off.width = Math.floor(viewport.width);
+      off.height = Math.floor(viewport.height);
+      if (task) task.cancel();
+      task = page.render({ canvasContext: off.getContext('2d'), viewport });
+      try {
+        await task.promise;
+      } catch (e) {
+        if (e && e.name === 'RenderingCancelledException') return;
+        throw e;
+      }
+      if (seq !== renderSeq) return;
+      canvas.width = off.width;
+      canvas.height = off.height;
+      canvas.style.width = Math.floor(base.width * fit) + 'px';
+      canvas.style.height = Math.floor(base.height * fit) + 'px';
+      canvas.getContext('2d').drawImage(off, 0, 0);
+      statusEl.hidden = true;
+    }
+
+    function updateNav() {
+      countEl.textContent = current + ' / ' + pdf.numPages;
+      prevBtn.disabled = current <= 1;
+      nextBtn.disabled = current >= pdf.numPages;
+    }
+
+    function go(n) {
+      if (!pdf) return;
+      const target = Math.max(1, Math.min(pdf.numPages, n));
+      if (target === current) return;
+      current = target;
+      updateNav();
+      render().catch(fail);
+    }
+
+    prevBtn.addEventListener('click', () => go(current - 1));
+    nextBtn.addEventListener('click', () => go(current + 1));
+
+    // Click the left third to go back, anywhere else to go forward
+    stage.addEventListener('click', (e) => {
+      if (e.target.closest('button, a')) return;
+      const r = stage.getBoundingClientRect();
+      go(e.clientX - r.left < r.width * 0.3 ? current - 1 : current + 1);
+    });
+
+    // Swipe on touch screens
+    let touchX = null, touchY = null;
+    stage.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) { touchX = null; return; }
+      touchX = e.touches[0].clientX;
+      touchY = e.touches[0].clientY;
+    }, { passive: true });
+    stage.addEventListener('touchend', (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      const dy = e.changedTouches[0].clientY - touchY;
+      touchX = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? current + 1 : current - 1);
+    });
+
+    // Arrow keys (and presentation clickers) when the viewer is focused or full screen
+    document.addEventListener('keydown', (e) => {
+      const fs = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fs !== viewer && !viewer.contains(document.activeElement)) return;
+      if (e.altKey || e.ctrlKey || e.metaKey || !pdf) return;
+      const step = { ArrowRight: 1, PageDown: 1, ArrowLeft: -1, PageUp: -1 }[e.key];
+      if (step) { e.preventDefault(); go(current + step); }
+      else if (e.key === 'Home') { e.preventDefault(); go(1); }
+      else if (e.key === 'End') { e.preventDefault(); go(pdf.numPages); }
+    });
+
+    // Re-render sharply on resize and full screen
+    let raf = 0;
+    new ResizeObserver(() => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => render().catch(fail));
+    }).observe(stage);
+
+    try {
+      const pdfjsLib = await import(PDFJS + 'pdf.min.mjs');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + 'pdf.worker.min.mjs';
+      pdf = await pdfjsLib.getDocument({ url: PDF_URL, isEvalSupported: false }).promise;
+      updateNav();
+      await render();
+    } catch (err) {
+      fail(err);
     }
   </script>
 </body>
